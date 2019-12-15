@@ -7,6 +7,7 @@ function App() {
 
   const [isToggled, setIsToggled] = useState(false)
 
+  // click handler that switches our toggled state
   const handleClick = () => {
     setIsToggled(!isToggled)
   }
@@ -17,8 +18,10 @@ function App() {
       <hr />
     </h1>
 
+    {/* If our toggled state is false, show Page One, otherwise, show Page Two */}
     {!isToggled ? <PageOne /> : <PageTwo />}
     
+    {/* If our toggled state is false, display the text "Next", otherwise, show the text "Back" */}
     <button onClick={handleClick}>{!isToggled ? 'Next' : 'Back'}</button>
 
     <Instructions />

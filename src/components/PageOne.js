@@ -7,18 +7,21 @@ export default function PageOne() {
   const [defs, setDefs] = useState()
   const [currentIndex, setCurrentIndex] = useState(null)
 
+  // create event handler that switches our toggled stated and stores the index of the event target into state.
   const toggleIsOpen = (e, i) => {
     e.preventDefault()
     setIsOpen(!isOpen)
     setCurrentIndex(i)
   }
 
+  // run this function when the component mounts
   useEffect(() => {
     setDefs([...definitionsCopy]) // spread and destructure the definitionsCopy array and store it in state
   }, [])
   
   return (
-    <StyledEmbed>
+    // Wrap our component JSX in our styled embed higher order component which passes along styling through to the component
+    <StyledEmbed> 
       <div id="iframeOne" className="embed-responsive-item">
         <div id="esscontainer" className="esscontainer_shadow">
             <div id="ess-wrapper">
@@ -31,6 +34,7 @@ export default function PageOne() {
 
                         <div className="dropdown-content" style={{right: "0"}}>
 
+                          {/* Loop over our buttonsCopy array and create an anchor tag for each with it's corresponding text content */}
                           {buttonsCopy.map((btn, index) => (
                             <a href="#" target="_blank" key={index}>{btn}</a>
                           ))}
@@ -43,13 +47,14 @@ export default function PageOne() {
 
                         <ul className="definitions">
 
+                          {/* Check that defs is truthy and then map over defs array to create a div for each one */}
                           {defs && defs.map((def, index) => {
-                            console.log(index)
                             return (
                             <div key={index}>
 
                               <li><button onClick={(e) => toggleIsOpen(e, index)} className="def_btn">{def.button}</button></li>
 
+                              {/* if the state is open, render the definition for the corresponding button, otherwise show nothing */}
                               {isOpen ? (
                                 <div id={def.id} className="answerbtns">
                                   {defs[currentIndex].definition}

@@ -16,6 +16,7 @@ export default function PageTwo() {
   }
 
   return (
+    // Wrap our component JSX in our styled embed higher order component which passes along styling through to the component
     <StyledEmbed>
       <div id="iframeTwo" class="embed-responsive-item" >
         <div id="esscontainer" class="esscontainer_shadow">
